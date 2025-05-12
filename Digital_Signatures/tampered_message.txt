@@ -1,0 +1,2 @@
+This is a sample message for the Digital Signatures project.
+It has been TAMPERED WITH to demonstrate tamper detection.

@@ -1,0 +1,2 @@
+This is a sample message for the Digital Signatures project.
+It will be used to demonstrate signing and verification, as well as tamper detection.
