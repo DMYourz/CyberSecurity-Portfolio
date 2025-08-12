@@ -120,10 +120,10 @@ Cybersecurity professional with hands-on experience in cryptography, network sec
 
 ## 🤝 Connect With Me
 
-- **GitHub:** [DMYourz](https://github.com/DMYourz )
-- **LinkedIn:** [Your LinkedIn Profile]
-- **Email:** [your.email@domain.com]
-- **Portfolio:** [This Repository](https://github.com/DMYourz/CyberSecurity-Portfolio )
+- **GitHub:** https://github.com/DMYourz
+- **LinkedIn:** www.linkedin.com/in/dmyourz
+- **Email:** danielmochkarovsky@gmail.com
+- **Portfolio:** https://github.com/DMYourz/CyberSecurity-Portfolio
 
 ---
 
