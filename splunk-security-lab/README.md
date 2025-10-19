@@ -2,10 +2,9 @@
 
 > A hands-on lab for learning and practicing security monitoring, threat hunting, and incident response with Splunk.
 
-[![Splunk](https://img.shields.io/badge/Splunk-Enterprise-000000?style=flat&logo=splunk)](https://www.splunk.com/)
-[![Platform](https://img.shields.io/badge/Platform-VirtualBox-blue)](https://www.virtualbox.org/)
-[![Dataset](https://img.shields.io/badge/Dataset-BOTS%20v3-orange)](https://github.com/splunk/botsv3)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Splunk](https://img.shields.io/badge/Splunk-Enterprise-000000?style=flat&logo=splunk )](https://www.splunk.com/ )
+[![Platform](https://img.shields.io/badge/Platform-VirtualBox-blue )](https://www.virtualbox.org/ )
+[![License](https://img.shields.io/badge/License-MIT-green )](LICENSE)
 
 ---
 
@@ -72,38 +71,78 @@ Additional Dataset:
 └─────────────────────────────────────────────────────────────┘
 ```
 
+
 ### Technical Specifications
 
 | Component | Specification | Purpose |
 |-----------|--------------|---------|
 | **Splunk Enterprise** | v9.x, Windows 11 | Central indexing and search |
 | **Universal Forwarder** | v9.x, Kali Linux | Log collection and forwarding |
-| **Data Volume** | 1.9M+ events indexed | Real-world scale dataset |
+| **Data Volume** | 350,000+ events indexed | Real-world scale dataset |
 | **Network** | Bridged adapter, isolated lab | Secure testing environment |
 | **Storage** | 100GB+ allocated | Index storage and retention |
 
 ---
 
-## ✨ Key Features
+## ✨ Lab Highlights
 
-*   **Realistic Lab Environment:** A multi-VM setup that mirrors a typical corporate network, with data flowing from a Linux host to a Splunk instance on Windows.
-*   **Real-World Dataset:** Utilizes the Splunk Boss of the SOC (BOTS) v3 dataset, which contains over 1.9 million events from a variety of sources, including a real Cerber ransomware attack.
-*   **Hands-On Investigation:** A detailed walkthrough of a ransomware investigation, from initial indicators to identifying the full attack chain.
-*   **Practical SPL Queries:** A collection of over 50 SPL queries for threat hunting, reporting, and dashboarding.
-*   **Custom Alerts:** Examples of custom alerts for detecting common security threats.
+### Data Collection
+
+The lab successfully collects and indexes security data from multiple sources:
+
+![Data Sources](screenshots/01-data-sources.png.png)
+
+**Data Sources:**
+- **333,406 events** from linux_journal (authentication, sudo, system logs)
+- **17,514 events** from linux_logs
+- Apache web server access and error logs
+- System boot logs
+
+### Security Monitoring
+
+The lab demonstrates real security monitoring capabilities:
+
+![Failed Login Detection](screenshots/02-failed-logins.png.png)
+
+**Failed Authentication Detection:** 76 failed login attempts detected and analyzed.
+
+![Sudo Activity](screenshots/03-sudo-activity.png.png)
+
+**Privilege Escalation Monitoring:** Tracking sudo commands and privileged access.
+
+### Timeline Analysis
+
+![Activity Timeline](screenshots/04-timeline.png.png)
+
+Visual analysis of security events over time, enabling pattern recognition and anomaly detection.
+
+### Log Analysis
+
+![Sample Logs](screenshots/05-sample-logs.png.png)
+
+Raw log data showing authentication events, system activity, and security-relevant information.
 
 ---
 
-## 🔍 Investigation Highlight: Cerber Ransomware
+## 🔧 Forwarder Configuration
 
-This lab includes a detailed investigation of a Cerber ransomware attack, based on the BOTSv3 dataset. The investigation demonstrates how to use Splunk to:
+### Universal Forwarder Setup
 
-*   Identify indicators of compromise (IOCs).
-*   Trace the attacker's steps across multiple systems.
-*   Build a timeline of the attack.
-*   Develop queries to detect similar threats in the future.
+![Forwarder Status](screenshots/06-forwarder-status.png.png)
 
-See the full [Investigation Walkthrough](INVESTIGATION.md) for a step-by-step analysis of the attack.
+The Splunk Universal Forwarder is configured and running on the Kali Linux VM.
+
+### Output Configuration
+
+![Outputs Config](screenshots/07-outputs-config.png.png)
+
+Configured to forward data to the Splunk Enterprise indexer on port 9997.
+
+### Input Configuration
+
+![Inputs Config](screenshots/08-inputs-config.png.png)
+
+Monitoring multiple log sources including authentication logs, system logs, and web server logs.
 
 ---
 
@@ -118,21 +157,34 @@ To get started with this lab, you will need:
 
 Follow the [Setup Guide](SETUP.md) for detailed instructions on how to configure the lab environment.
 
+For a quick setup, see the [Quick Start Guide](QUICKSTART.md).
+
 ---
 
 ## 📂 Repository Structure
 
 ```
-├── README.md
-├── SETUP.md
-├── INVESTIGATION.md
-├── SEARCHES.md
-├── SCREENSHOTS.md
-├── configs
-│   ├── inputs.conf
-│   └── outputs.conf
-├── LICENSE
-└── .gitignore
+├── README.md                  # This file
+├── SETUP.md                   # Detailed setup guide
+├── INVESTIGATION.md           # Security investigation walkthrough
+├── SEARCHES.md                # Collection of useful SPL queries
+├── SCREENSHOTS.md             # Screenshot documentation guide
+├── QUICKSTART.md              # Quick setup guide
+├── screenshots/               # Lab screenshots
+│   ├── 01-data-sources.png.png
+│   ├── 02-failed-logins.png.png
+│   ├── 03-sudo-activity.png.png
+│   ├── 04-timeline.png.png
+│   ├── 05-sample-logs.png.png
+│   ├── 06-forwarder-status.png.png
+│   ├── 07-outputs-config.png.png
+│   └── 08-inputs-config.png.png
+├── configs/                   # Configuration files
+│   ├── inputs.conf           # Example forwarder inputs
+│   ├── outputs.conf          # Example forwarder outputs
+│   └── alert-examples.txt    # Sample alert configurations
+├── LICENSE                    # MIT License
+└── .gitignore                # Git ignore rules
 ```
 
 *   **README.md:** This file, providing an overview of the project.
@@ -144,9 +196,18 @@ Follow the [Setup Guide](SETUP.md) for detailed instructions on how to configure
 *   **LICENSE:** The project's license.
 *   **.gitignore:** A list of files and directories to ignore in the repository.
 
+
+---
+
+## 📚 Documentation
+
+*   **[SETUP.md](SETUP.md)** - Complete step-by-step setup instructions
+*   **[INVESTIGATION.md](INVESTIGATION.md)** - Detailed security investigation walkthrough
+*   **[SEARCHES.md](SEARCHES.md)** - 50+ useful SPL queries for security operations
+*   **[QUICKSTART.md](QUICKSTART.md)** - Get up and running in 30 minutes
+
 ---
 
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
