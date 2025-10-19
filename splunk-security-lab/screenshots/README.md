@@ -6,10 +6,6 @@ This directory contains screenshots documenting the Splunk Security Operations L
 
 
 
----
-
-
-
 \## Screenshot Index
 
 
@@ -18,57 +14,33 @@ This directory contains screenshots documenting the Splunk Security Operations L
 
 
 
-\*\*01-data-sources.png.png\*\*
+\#### 01-data-sources.png.png
 
-\- Overview of all data sources being collected and indexed
-
-\- Shows 350,000+ events across multiple sourcetypes
-
-\- Demonstrates successful data collection from Kali Linux VM
+Overview of all data sources being collected and indexed. Shows 350,000+ events across multiple sourcetypes and demonstrates successful data collection from Kali Linux VM.
 
 
 
-\*\*02-failed-logins.png.png\*\*
+\#### 02-failed-logins.png.png
 
-\- Failed authentication detection
-
-\- 76 failed login attempts identified
-
-\- Demonstrates security monitoring capability
+Failed authentication detection showing 76 failed login attempts identified. Demonstrates security monitoring capability.
 
 
 
-\*\*03-sudo-activity.png.png\*\*
+\#### 03-sudo-activity.png.png
 
-\- Privilege escalation monitoring
-
-\- Tracking sudo commands and privileged access
-
-\- Shows administrative activity analysis
+Privilege escalation monitoring, tracking sudo commands and privileged access. Shows administrative activity analysis.
 
 
 
-\*\*04-timeline.png.png\*\*
+\#### 04-timeline.png.png
 
-\- Timeline visualization of security events
-
-\- Pattern analysis over time
-
-\- Demonstrates temporal analysis capabilities
+Timeline visualization of security events. Pattern analysis over time demonstrating temporal analysis capabilities.
 
 
 
-\*\*05-sample-logs.png.png\*\*
+\#### 05-sample-logs.png.png
 
-\- Raw log data examples
-
-\- Authentication events and system activity
-
-\- Shows actual security data being analyzed
-
-
-
----
+Raw log data examples showing authentication events and system activity. Displays actual security data being analyzed.
 
 
 
@@ -76,127 +48,97 @@ This directory contains screenshots documenting the Splunk Security Operations L
 
 
 
-\*\*06-forwarder-status.png.png\*\*
+\#### 06-forwarder-status.png.png
 
-\- Splunk Universal Forwarder running status
+Splunk Universal Forwarder running status. Confirms forwarder is operational on Kali Linux VM and shows successful service deployment.
 
-\- Confirms forwarder is operational on Kali Linux VM
 
-\- Shows successful service deployment
 
+\#### 07-outputs-config.png.png
 
+Forwarder output configuration showing connection to Splunk Enterprise indexer. Demonstrates proper data forwarding setup on port 9997.
 
-\*\*07-outputs-config.png.png\*\*
 
-\- Forwarder output configuration
 
-\- Shows connection to Splunk Enterprise indexer
+\#### 08-inputs-config.png.png
 
-\- Demonstrates proper data forwarding setup (port 9997)
+Forwarder input configuration listing all monitored log files and directories. Shows data collection sources including /var/log/auth.log, syslog, and more.
 
 
 
-\*\*08-inputs-config.png.png\*\*
+\## Data Volume
 
-\- Forwarder input configuration
 
-\- Lists all monitored log files and directories
 
-\- Shows data collection sources (/var/log/auth.log, syslog, etc.)
+| Metric | Value |
 
+|--------|-------|
 
+| Total Events Indexed | 350,000+ |
 
----
+| Primary Source | linux\_journal (333,406 events) |
 
+| Additional Sources | linux\_logs, apache\_access, apache\_error, linux\_boot |
 
 
-\## Screenshot Details
 
+\## Lab Components
 
 
-\### Data Volume
 
-\- \*\*Total Events Indexed:\*\* 350,000+
+| Component | Details |
 
-\- \*\*Primary Source:\*\* linux\_journal (333,406 events)
+|-----------|---------|
 
-\- \*\*Additional Sources:\*\* linux\_logs, apache\_access, apache\_error, linux\_boot
+| Splunk Enterprise | Windows 11 VM |
 
+| Universal Forwarder | Kali Linux VM |
 
+| Network | Bridged adapter configuration |
 
-\### Lab Components
+| Data Flow | Kali → Port 9997 → Splunk Enterprise |
 
-\- \*\*Splunk Enterprise:\*\* Windows 11 VM
 
-\- \*\*Universal Forwarder:\*\* Kali Linux VM
 
-\- \*\*Network:\*\* Bridged adapter configuration
+\## Skills Demonstrated
 
-\- \*\*Data Flow:\*\* Kali → Port 9997 → Splunk Enterprise
 
 
+\*\*Technical Skills:\*\*
 
----
+\- SIEM deployment and configuration
 
+\- Data collection and forwarding setup
 
+\- Security event analysis
 
-\## How These Screenshots Demonstrate Skills
+\- SPL (Search Processing Language) queries
 
+\- Timeline and pattern analysis
 
 
-\### Technical Skills
 
-\- ✅ SIEM deployment and configuration
+\*\*Security Operations:\*\*
 
-\- ✅ Data collection and forwarding setup
+\- Failed authentication monitoring
 
-\- ✅ Security event analysis
+\- Privilege escalation tracking
 
-\- ✅ SPL (Search Processing Language) queries
+\- Log analysis and correlation
 
-\- ✅ Timeline and pattern analysis
+\- Infrastructure monitoring
 
 
 
-\### Security Operations
+\*\*System Administration:\*\*
 
-\- ✅ Failed authentication monitoring
+\- Linux system configuration
 
-\- ✅ Privilege escalation tracking
+\- Network connectivity setup
 
-\- ✅ Log analysis and correlation
+\- Service deployment and management
 
-\- ✅ Infrastructure monitoring
-
-
-
-\### System Administration
-
-\- ✅ Linux system configuration
-
-\- ✅ Network connectivity setup
-
-\- ✅ Service deployment and management
-
-\- ✅ Configuration file management
-
-
-
----
-
-
-
-\## Screenshot Specifications
-
-
-
-\- \*\*Format:\*\* PNG
-
-\- \*\*Source:\*\* VirtualBox VMs (Windows 11 + Kali Linux)
-
-\- \*\*Tools Used:\*\* Windows Snipping Tool, Linux screenshot utilities
-
-\- \*\*Resolution:\*\* High-resolution for clarity
+\- Configuration file management
 
 
 
