@@ -1,0 +1,261 @@
+# Splunk Alert Examples
+# These alerts can be created in Splunk Web: Settings → Searches, reports, and alerts
+
+# ============================================================================
+# Alert 1: Brute Force SSH Detection
+# ============================================================================
+Name: SSH Brute Force Detected
+Description: Detects 5 or more failed SSH login attempts within 5 minutes
+
+Search:
+index=main sourcetype=linux_journal "Failed password"
+| rex field=_raw "invalid user (?<username>\w+) from (?<src_ip>[\w\.:]+)"
+| stats count by src_ip, username
+| where count > 5
+
+Schedule: Run every 5 minutes (*/5 * * * *)
+Trigger Condition: Number of Results is greater than 0
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to security team
+  - Log event
+
+Priority: High
+Category: Authentication
+
+
+# ============================================================================
+# Alert 2: Privilege Escalation Attempt
+# ============================================================================
+Name: Unauthorized Privilege Escalation
+Description: Detects sudo usage on sensitive files
+
+Search:
+index=main sourcetype=linux_journal sudo (/etc/shadow OR /etc/passwd OR /root)
+| table _time, user, command
+
+Schedule: Real-time
+Trigger Condition: Per-Result (each event triggers)
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to security team
+  - Create incident ticket
+
+Priority: Critical
+Category: Privilege Escalation
+
+
+# ============================================================================
+# Alert 3: Malware C2 Communication
+# ============================================================================
+Name: Malware C2 Communication Detected
+Description: Detects communication with known malicious domains
+
+Search:
+index=* (cerber OR malware OR botnet OR c2 OR command-and-control)
+| table _time, host, src_ip, dest_ip, query
+
+Schedule: Real-time
+Trigger Condition: Per-Result
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to SOC
+  - Execute script to block IP
+
+Priority: Critical
+Category: Malware
+
+
+# ============================================================================
+# Alert 4: Security Service Disruption
+# ============================================================================
+Name: Security Service Stopped
+Description: Alerts when antivirus or firewall services are stopped
+
+Search:
+index=* ("Windows Defender" OR firewall OR antivirus) (stopped OR disabled OR "not running")
+| table _time, host, service, status
+
+Schedule: Real-time
+Trigger Condition: Per-Result
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to security team
+  - Page on-call engineer
+
+Priority: Critical
+Category: Defense Evasion
+
+
+# ============================================================================
+# Alert 5: Web Application Attack
+# ============================================================================
+Name: Web Application Attack Detected
+Description: Detects SQL injection and directory traversal attempts
+
+Search:
+index=main sourcetype=apache_access ("union" OR "select" OR "../" OR "etc/passwd" OR "1=1")
+| table _time, clientip, uri, status
+
+Schedule: Run every 5 minutes
+Trigger Condition: Number of Results is greater than 3
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to web admin
+  - Log event
+
+Priority: High
+Category: Web Attack
+
+
+# ============================================================================
+# Alert 6: Unusual Login Time
+# ============================================================================
+Name: Login Outside Business Hours
+Description: Detects successful logins outside of 6 AM - 10 PM
+
+Search:
+index=main sourcetype=linux_journal "Accepted password"
+| eval hour=strftime(_time, "%H")
+| where hour < 6 OR hour > 22
+| table _time, user, src_ip
+
+Schedule: Run every 15 minutes
+Trigger Condition: Number of Results is greater than 0
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to security team
+
+Priority: Medium
+Category: Anomalous Activity
+
+
+# ============================================================================
+# Alert 7: Large Data Transfer
+# ============================================================================
+Name: Potential Data Exfiltration
+Description: Detects large outbound data transfers (>100MB)
+
+Search:
+index=* sourcetype=stream:http method=POST
+| stats sum(bytes_out) as total_bytes by src_ip, dest_ip
+| where total_bytes > 100000000
+| eval total_mb=round(total_bytes/1024/1024,2)
+| table src_ip, dest_ip, total_mb
+
+Schedule: Run every 10 minutes
+Trigger Condition: Number of Results is greater than 0
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to security team
+  - Create incident ticket
+
+Priority: High
+Category: Data Exfiltration
+
+
+# ============================================================================
+# Alert 8: New User Account Created
+# ============================================================================
+Name: New User Account Created
+Description: Alerts when a new user account is added to the system
+
+Search:
+index=main (useradd OR "new user" OR "user created")
+| table _time, host, user, _raw
+
+Schedule: Real-time
+Trigger Condition: Per-Result
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to IT admin
+
+Priority: Medium
+Category: Account Management
+
+
+# ============================================================================
+# Alert 9: Failed Login Threshold
+# ============================================================================
+Name: Multiple Failed Logins - Single User
+Description: Detects 10+ failed logins for a single user account
+
+Search:
+index=main sourcetype=linux_journal "Failed password"
+| stats count by user
+| where count > 10
+
+Schedule: Run every 10 minutes
+Trigger Condition: Number of Results is greater than 0
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to security team
+  - Lock user account (if integrated)
+
+Priority: High
+Category: Account Compromise
+
+
+# ============================================================================
+# Alert 10: Ransomware Indicator
+# ============================================================================
+Name: Ransomware Activity Detected
+Description: Detects ransomware-related keywords and file extensions
+
+Search:
+index=* (ransomware OR cerber OR locky OR encrypted OR decrypt OR ransom OR bitcoin OR ".cerber" OR ".locked")
+| table _time, host, sourcetype, _raw
+
+Schedule: Real-time
+Trigger Condition: Per-Result
+Trigger Actions:
+  - Add to Triggered Alerts
+  - Send email to SOC
+  - Page incident response team
+  - Execute isolation script
+
+Priority: Critical
+Category: Ransomware
+
+
+# ============================================================================
+# How to Create These Alerts in Splunk
+# ============================================================================
+
+1. Run the search in Splunk Web
+2. Click "Save As" → "Alert"
+3. Enter the alert name and description
+4. Configure schedule:
+   - Real-time: Runs continuously
+   - Cron: Use cron expression (e.g., */5 * * * * for every 5 minutes)
+   - Basic: Choose interval from dropdown
+5. Set trigger condition:
+   - Number of Results
+   - Number of Hosts
+   - Number of Sources
+   - Custom condition
+6. Configure trigger actions:
+   - Add to Triggered Alerts
+   - Log event
+   - Send email
+   - Run a script
+   - Webhook
+   - Create ticket (if integrated with ITSM)
+7. Set priority and category
+8. Click "Save"
+
+# ============================================================================
+# Alert Best Practices
+# ============================================================================
+
+- Start with conservative thresholds and tune based on false positives
+- Use time-based windows (e.g., 5 minutes, 1 hour) to reduce noise
+- Implement alert throttling to prevent alert fatigue
+- Document alert purpose and expected response
+- Regularly review and update alert logic
+- Test alerts before deploying to production
+- Use alert severity levels appropriately
+- Integrate with ticketing systems for tracking
+- Create runbooks for alert response procedures
+- Monitor alert effectiveness and adjust as needed
+
