@@ -4,54 +4,46 @@ Hey there! I'm Dan, a cybersecurity analyst who believes the best way to learn s
 
 This portfolio is a collection of hands-on projects where I've built, configured, analyzed, and occasionally troubleshot my way through various security tools and scenarios. No fluff, just real technical work.
 
-## What's Inside
+## SIEM & Security Operations
 
-### Splunk Security Operations Lab
+### [Splunk Security Operations Lab](./SIEM-Projects/splunk-security-lab/)
 My second Splunk lab - built a full SIEM environment from scratch. Collected 350,000+ security events, configured forwarders, and learned why firewall rules matter the hard way.
-
-[View Project](./splunk-security-lab/)
 
 **Tech:** Splunk Enterprise, Universal Forwarder, VirtualBox, Windows 11, Kali Linux
 
-### Splunk Log Analysis & Threat Detection
+### [Splunk Log Analysis & Threat Detection](./SIEM-Projects/Splunk_Log_Analysis_Threat_Detection/)
 First dive into Splunk. Analyzed the BOTS v3 dataset, investigated a Cerber ransomware attack, and wrote way too many SPL queries.
-
-[View Project](./Splunk_Log_Analysis_Threat_Detection/)
 
 **Tech:** Splunk, SPL, BOTS Dataset, Incident Response
 
-### Vulnerability Lab
-Vulnerability scanning and SIEM integration. Because finding vulnerabilities is only half the battle - you need to monitor them too.
+## Network Security
 
-[View Project](./vulnerability-lab/)
-
-**Tech:** Vulnerability Scanning, SIEM Integration
-
-### Nmap Network Scanning Automation
+### [Nmap Network Scanning Automation](./Network-Security/Nmap_Network_Scanning_Automation/)
 Automated network scanning scripts. Why click when you can script?
-
-[View Project](./Nmap_Network_Scanning_Automation/)
 
 **Tech:** Nmap, Python/Bash, Network Discovery
 
-### Cryptography Toolkit
-Playing with encryption, hashing, and cryptographic algorithms. The math is hard, but the implementations are fun.
+### [Vulnerability Lab](./Network-Security/vulnerability-lab/)
+Vulnerability scanning and SIEM integration. Because finding vulnerabilities is only half the battle - you need to monitor them too.
 
-[View Project](./Cryptography_Toolkit/)
+**Tech:** Vulnerability Scanning, SIEM Integration
+
+## Cryptography
+
+### [Cryptography Toolkit](./Cryptography/Cryptography_Toolkit/)
+Playing with encryption, hashing, and cryptographic algorithms. The math is hard, but the implementations are fun.
 
 **Tech:** Cryptography, Python, Encryption Algorithms
 
-### Digital Signatures
+### [Digital Signatures](./Cryptography/Digital_Signatures/)
 Understanding and implementing digital signatures. Trust, but verify.
-
-[View Project](./Digital_Signatures/)
 
 **Tech:** PKI, Digital Signatures, Cryptographic Verification
 
-### Educational Keylogger Project
-An educational project exploring how keyloggers work. Built for learning, not for evil.
+## Security Research
 
-[View PDF](./Educational%20Keylogger%20Project.pdf)
+### [Educational Keylogger Project](./Research/Educational%20Keylogger%20Project.pdf)
+An educational project exploring how keyloggers work. Built for learning, not for evil.
 
 **Tech:** Python, Security Research, Ethical Hacking
 
