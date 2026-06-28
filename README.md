@@ -27,9 +27,10 @@ Automated the Tier-1 phishing triage grind into a Python tool — drop in a raw 
 
 ### [Sigma Detection-as-Code](https://github.com/DMYourz/sigma-detection-as-code)
 
-Treated detection rules like real software: 8 Windows/Sysmon Sigma rules (9 MITRE ATT&CK techniques) that are validated, unit-tested against true-positive/false-positive events, and auto-compiled to Splunk SPL by CI. The centerpiece is a from-scratch offline Sigma matcher, so every rule is regression-tested — does it catch the attack and ignore the benign look-alike? — with no SIEM required. Change a rule and CI tells you in seconds whether detection coverage broke.
+Treated detection rules like real software: 8 Windows/Sysmon Sigma rules (9 MITRE ATT&CK techniques) that are validated, unit-tested against true-positive/false-positive events, and auto-compiled to Splunk SPL by CI. The centerpiece is a from-scratch offline Sigma matcher, so every rule is regression-tested (does it catch the attack and ignore the benign look-alike?) with no SIEM required. Change a rule and CI tells you in seconds whether detection coverage broke.
 
 **Tech:** Sigma, pySigma, Splunk SPL, Python, MITRE ATT&CK, pytest, GitHub Actions, Detection-as-Code
+
 ## Network Security
 
 ### [Nmap Network Scanning Automation](./Network-Security/Nmap_Network_Scanning_Automation/)
