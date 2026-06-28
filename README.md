@@ -25,6 +25,12 @@ Automated the Tier-1 phishing triage grind into a Python tool — drop in a raw 
 **Tech:** Python, MITRE ATT&CK, Email/MIME parsing, Detection-as-Code, pytest, GitHub Actions
 ## Detection Engineering
 
+### [Splunk Detection Lab](https://github.com/DMYourz/splunk-detection-lab)
+
+A one-command, Docker-based Splunk lab that proves those detections fire against a live SIEM, not just in unit tests. It stands up Splunk as code (index, HEC input, saved searches), ingests a synthetic 8-technique Sysmon intrusion plus benign noise over the HTTP Event Collector, then runs the compiled Sigma/SPL detections through Splunk's REST API and reports which fired. The live-validation half of the Sigma project: write the rules, test them offline, then confirm they trigger on real ingested data.
+
+**Tech:** Splunk, Docker Compose, Sysmon, Sigma, HEC, REST API, Python, MITRE ATT&CK
+
 ### [Sigma Detection-as-Code](https://github.com/DMYourz/sigma-detection-as-code)
 
 Treated detection rules like real software: 8 Windows/Sysmon Sigma rules (9 MITRE ATT&CK techniques) that are validated, unit-tested against true-positive/false-positive events, and auto-compiled to Splunk SPL by CI. The centerpiece is a from-scratch offline Sigma matcher, so every rule is regression-tested (does it catch the attack and ignore the benign look-alike?) with no SIEM required. Change a rule and CI tells you in seconds whether detection coverage broke.
