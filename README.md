@@ -16,6 +16,13 @@ First dive into Splunk. Analyzed the BOTS v3 dataset, investigated a Cerber rans
 
 **Tech:** Splunk, SPL, BOTS Dataset, Incident Response
 
+## Email Security
+
+### [Phishing Email Triage Analyzer](https://github.com/DMYourz/phishing-email-triage-analyzer)
+
+Automated the Tier-1 phishing triage grind into a Python tool — drop in a raw `.eml` and it scores the message, maps every finding to MITRE ATT&CK, and writes an analyst-ready report (Markdown/JSON/HTML). 25 weighted detection rules covering spoofed authentication (SPF/DKIM/DMARC), look-alike and homoglyph domains, link manipulation, malicious attachments, and BEC/reward-scam language. Offline by default, 30 passing tests with a detection-regression suite, and CI on every push. Bonus: I tuned it against a real phish that hit my own inbox.
+
+**Tech:** Python, MITRE ATT&CK, Email/MIME parsing, Detection-as-Code, pytest, GitHub Actions
 ## Network Security
 
 ### [Nmap Network Scanning Automation](./Network-Security/Nmap_Network_Scanning_Automation/)
