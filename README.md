@@ -23,6 +23,13 @@ First dive into Splunk. Analyzed the BOTS v3 dataset, investigated a Cerber rans
 Automated the Tier-1 phishing triage grind into a Python tool — drop in a raw `.eml` and it scores the message, maps every finding to MITRE ATT&CK, and writes an analyst-ready report (Markdown/JSON/HTML). 25 weighted detection rules covering spoofed authentication (SPF/DKIM/DMARC), look-alike and homoglyph domains, link manipulation, malicious attachments, and BEC/reward-scam language. Offline by default, 30 passing tests with a detection-regression suite, and CI on every push. Bonus: I tuned it against a real phish that hit my own inbox.
 
 **Tech:** Python, MITRE ATT&CK, Email/MIME parsing, Detection-as-Code, pytest, GitHub Actions
+## Detection Engineering
+
+### [Sigma Detection-as-Code](https://github.com/DMYourz/sigma-detection-as-code)
+
+Treated detection rules like real software: 8 Windows/Sysmon Sigma rules (9 MITRE ATT&CK techniques) that are validated, unit-tested against true-positive/false-positive events, and auto-compiled to Splunk SPL by CI. The centerpiece is a from-scratch offline Sigma matcher, so every rule is regression-tested — does it catch the attack and ignore the benign look-alike? — with no SIEM required. Change a rule and CI tells you in seconds whether detection coverage broke.
+
+**Tech:** Sigma, pySigma, Splunk SPL, Python, MITRE ATT&CK, pytest, GitHub Actions, Detection-as-Code
 ## Network Security
 
 ### [Nmap Network Scanning Automation](./Network-Security/Nmap_Network_Scanning_Automation/)
